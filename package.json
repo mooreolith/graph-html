@@ -1,0 +1,15 @@
+{
+  "name": "graph-html",
+  "version": "0.0.1",
+  "description": "",
+  "main": "src/graph-html.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "python3 scripts/server.py"
+  },
+  "author": "Josh Moore <mooreolith@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "three": "^0.163.0"
+  }
+}
