@@ -1,6 +1,6 @@
-import * as three from '/node_modules/three/build/three.module.js'
 import { LayoutGraph } from './layout.mjs'
-
+import * as three from 'three'
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 /*
   customElements for representing the graph in the DOM

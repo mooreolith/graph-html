@@ -1,4 +1,4 @@
-import * as three from '/node_modules/three/build/three.module.js';
+import * as three from 'three'
 import { Constants } from '/src/constants.mjs';
 
 class Box {

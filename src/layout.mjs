@@ -1,5 +1,5 @@
 import { Util } from './util.mjs'
-import * as three from '/node_modules/three/build/three.module.js'
+import * as three from 'three'
 import { Constants } from '/src/constants.mjs'
 window.Constants = Constants
 import { Octree, Box } from '/src/bhoctree.mjs'
