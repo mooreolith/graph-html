@@ -193,7 +193,8 @@ class LayoutGraph extends EventTarget {
     for(const edge of this.edges.values()){
       const difference = new three.Vector3().subVectors(edge.source.position, edge.target.position)
       const distance = difference.length() || Constants.epsilon
-      const force = difference.multiplyScalar(distance / Constants.K)
+      const force = difference.multiplyScalar(Constants.K * (distance * distance)) 
+
       edge.source.acceleration.sub(force)
       edge.target.acceleration.add(force)
     }
