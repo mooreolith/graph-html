@@ -41,6 +41,7 @@ class GraphHTML extends HTMLElement {
       <canvas></canvas>
     `
     this.setupScene()
+    this.setupOrbitControls()
     this.setupEventHandlers()
   }
 
@@ -68,6 +69,16 @@ class GraphHTML extends HTMLElement {
     const light = new three.AmbientLight(0xffffff, 1)
     this.scene.add(light)
     this.light = light
+  }
+
+  setupOrbitControls(){
+    const controls = new OrbitControls(this.camera, this.renderer.domElement)
+    controls.enableDamping = true
+    controls.dampingFactor = 0.25
+    controls.enableZoom = true
+    controls.update()
+
+    this.controls = controls
   }
 
   setupEventHandlers() {
@@ -323,6 +334,7 @@ class GraphHTML extends HTMLElement {
     this.updateVertices()
     this.updateEdges()
 
+    this.controls.update()
     this.renderer.render(this.scene, this.camera)
   }
 }

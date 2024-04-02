@@ -2,7 +2,8 @@ import { Util } from './util.mjs'
 import * as three from 'three'
 import { Constants } from '/src/constants.mjs'
 window.Constants = Constants
-import { Octree, Box } from '/src/bhoctree.mjs'
+import { Octree } from '/src/bhoctree.mjs'
+import { DynamicMatching } from '/src/dynamic-matching.mjs'
 
 class LayoutVertex extends EventTarget {
   constructor(id, options, graph) {
@@ -11,6 +12,9 @@ class LayoutVertex extends EventTarget {
     this.id = id
     this.options = Util.coalesce(Constants, options)
     this.graph = graph
+
+    this.priority = Math.random() // dynamic matching things
+    this.edges = new Set()
 
     const s = 5
     this.position = new three.Vector3(
@@ -75,7 +79,6 @@ class LayoutGraph extends EventTarget {
 
   vertices = new Map()
   edges = new Map()
-  bhtree = new Octree(new Box(new three.Vector3(), 1000))
 
   constructor(htmlGraph) {
     super()
@@ -101,7 +104,6 @@ class LayoutGraph extends EventTarget {
     const vertex = new LayoutVertex(id, options, this)
     vertex.id = id
 
-    this.bhtree.insert(vertex)
     this.vertices.set(id, vertex)
     return id
   }
@@ -121,11 +123,14 @@ class LayoutGraph extends EventTarget {
 
     const source = this.vertices.get(sourceId)
     const target = this.vertices.get(targetId)
-
     if(source && target){
       const edge = new LayoutEdge(id, source, target, options, this)
       edge.id = id
       this.edges.set(id, edge)
+
+      source.edges.add(edge)
+      target.edges.add(edge)
+
       return id
     }
   }
@@ -137,11 +142,14 @@ class LayoutGraph extends EventTarget {
       }
     }
 
-    this.bhtree.remove(this.vertices.get(id))
     this.vertices.delete(id)
   }
 
   removeEdge(id) {
+    const edge = this.edges.get(id)
+    edge.source.edges.delete(edge)
+    edge.target.edges.delete(edge)
+
     this.edges.delete(id)
   }
 
@@ -153,7 +161,8 @@ class LayoutGraph extends EventTarget {
   * attraction forces between connected vertices.
   */
   update() {
-    this.calculateRepulsionForces()
+    // this.calculateRepulsionForces()
+    this.estimateRepulsionForces()
     this.calculateAttractionForces()
     
     this.updateEdges()
@@ -180,21 +189,6 @@ class LayoutGraph extends EventTarget {
     }
   }
 
-  /*
-  calculateRepulsionForces() {
-    const vertices = Array.from(this.vertices.values());
-    const boundary = new Box(new three.Vector3(), 1000); // Adjust boundary size as needed
-    const octree = new Octree(boundary);
-  
-    vertices.forEach(vertex => octree.insert(vertex));
-  
-    vertices.forEach(vertex => {
-      const force = octree.calculateForce(vertex);
-      vertex.acceleration.add(force);
-    });
-  }
-  */
-
   calculateAttractionForces(){
     for(const edge of this.edges.values()){
       const difference = new three.Vector3().subVectors(edge.source.position, edge.target.position)
@@ -202,6 +196,25 @@ class LayoutGraph extends EventTarget {
       const force = difference.multiplyScalar(distance / Constants.K)
       edge.source.acceleration.sub(force)
       edge.target.acceleration.add(force)
+    }
+  }
+
+  estimateRepulsionForces(){
+    const octree = new Octree()
+    const vertices = Array.from(this.vertices.values())
+
+    for(const vertex of vertices){
+      octree.insert(vertex)
+    }
+
+    for(const vertex of vertices){
+      const force = octree.estimate(vertex, (v1, v2) => {
+        const difference = new three.Vector3().subVectors(v1.position, v2.position)
+        const distance = difference.length() || Constants.epsilon
+        return difference.multiplyScalar(Constants.f0 / Math.pow(distance, 2))
+      })
+
+      vertex.acceleration.add(force)
     }
   }
 
