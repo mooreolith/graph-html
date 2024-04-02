@@ -55,9 +55,17 @@ class Octree {
       f.add(forceFn(v, this)).multiplyScalar(this.inners.size);
     }
 
-    for(var outer of this.outers){
-      f.add(this.outers.get(outer).estimate(v, forceFn));
-    }
+    this.outers.forEach((octree, key) => {
+      var dist = c.clone().sub(octree.center());
+      var d = dist.length();
+
+      if(d < Constants.theta * this.size()){
+        f.add(octree.estimate(v, forceFn));
+      }else{
+        var force = forceFn(v, octree);
+        f.add(force);
+      }
+    });
 
     return f;
   }
@@ -83,7 +91,7 @@ class Octree {
   placeOuter(vertex){
     var o = this.getOctant(vertex.position);
     if(!this.outers.has(o)){
-      this.outers.set(o, new BarnesHutNode3());
+      this.outers.set(o, new Octree());
     }
 
     this.outers.get(o).insert(vertex);

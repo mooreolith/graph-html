@@ -109,6 +109,7 @@ class GraphHTML extends HTMLElement {
       this.dispatchEvent(new CustomEvent('html-edge-ready', {
         detail: {
           id: edge.id,
+          edge: edge,
           sourceId: edge.getAttribute('sourceId'),
           targetId: edge.getAttribute('targetId'),
           edge: edge
@@ -138,16 +139,13 @@ class GraphHTML extends HTMLElement {
     if (options.id) {
       id = options.id
     } else {
-      id = `edge-${GraphHTML.vertexId++}`
+      id = `vertex-${GraphHTML.vertexId++}`
     }
 
     const vertex = document.createElement('vertex-html')
     vertex.setAttribute("id", id)
-    vertex.graph = this
 
-    this.layout.addVertex({ id: id })
-    this.appendChild(vertex)
-
+    this.addVertex(vertex)
     return vertex.id
   }
 
@@ -167,31 +165,19 @@ class GraphHTML extends HTMLElement {
 
     const edge = document.createElement('edge-html')
     edge.setAttribute('id', id)
+    edge.source = this.layout.vertices.get(sourceId)
+    edge.target = this.layout.vertices.get(targetId)
     edge.setAttribute('sourceId', sourceId)
     edge.setAttribute('targetId', targetId)
-    edge.graph = this
 
     this.addEdge(edge)
-    this.appendChild(edge)
-
     return edge.id
   }
 
   addEdge(edge) {
-    this.layout.addEdge(edge.sourceId, edge.targetId, { id: edge.id })
+    this.layout.addEdge(edge.sourceId, edge.targetId, edge.id)
     edge.graph = this
     this.appendChild(edge)
-
-    const sourceVertex = this.layout.vertices.get(edge.sourceId)
-    const targetVertex = this.layout.vertices.get(edge.targetId)
-    const geometry = new three.BufferGeometry()
-      .setFromPoints([sourceVertex.position, targetVertex.position])
-    const material = new three.LineBasicMaterial({ color: 0x44aa88 })
-    const line = new three.Line(geometry, material)
-    this.scene.add(line)
-
-    edge.line = line
-    line.edge = edge 
   }
 
   removeVertex(id) {
@@ -232,19 +218,28 @@ class GraphHTML extends HTMLElement {
 
   onHTMLEdgeReady(e) {
     const edge = e.detail.edge
-    const sourceId = e.detail.sourceId
-    const targetId = e.detail.targetId
-
+    const sourceId = edge.sourceId
+    const targetId = edge.targetId
+    
     const source = this.layout.vertices.get(sourceId)
     const target = this.layout.vertices.get(targetId)
 
-    const geometry = new three.BufferGeometry().setFromPoints([source.position, target.position])
-    const material = new three.LineBasicMaterial({ color: 0x44aa88 })
-    const line = new three.Line(geometry, material)
+    if(source && target){
+      edge.source = source
+      edge.target = target
 
-    this.edges.set(e.detail.id, line)
-    this.layout.addEdge(sourceId, targetId, { id: e.detail.id })
-    this.scene.add(line)
+      // drawLine
+      const geometry = new three.BufferGeometry().setFromPoints([source.position, target.position])
+      const material = new three.LineBasicMaterial({ color: 0x44aa88 })
+      const line = new three.Line(geometry, material)
+      this.scene.add(line)    
+      
+      const id = e.detail.id
+      this.edges.set(id, line)
+      this.layout.addEdge(sourceId, targetId, { id: id })
+    }
+
+
   }
 
   onHTMLVertexRemoved(e) {
@@ -265,7 +260,7 @@ class GraphHTML extends HTMLElement {
     this.scene.remove(edge)
     this.querySelector(`edge-html[id="${id}"]`).remove()
 
-    this.layout.removeEdge(this.layoutE.get(id))
+    this.layout.removeEdge(id)
     this.edges.delete(e.detail.id)
   }
 
@@ -390,8 +385,8 @@ class EdgeHTML extends HTMLElement {
     this.id = this.getAttribute('id') || `edge-${GraphHTML.edgeId++}`
     this.sourceId = this.getAttribute('sourceId')
     this.targetId = this.getAttribute('targetId')
-    this.color = this.style.getPropertyValue('--edge-color')
 
+    this.color = this.style.getPropertyValue('--edge-color')
     this.dispatchEvent(new CustomEvent('html-edge-ready', {
       detail: {
         id: this.id,

@@ -39,52 +39,123 @@
       } 
     </script>
     <script type="module" src="/src/graph-html.mjs"></script>
+    <script type="text/javascript" src="./index.js"></script>
   </head>
   <body>
     <graph-html
+      id="graph"
       --K="1.0"
       --repulsion="1.0"
       --epsilon="0.1">
-
-      <vertex-html id="vertex-0"></vertex-html>
-      <vertex-html id="vertex-1"></vertex-html>
-      <vertex-html id="vertex-2"></vertex-html>
-      <vertex-html id="vertex-3"></vertex-html>
-      <vertex-html id="vertex-4"></vertex-html>
-      <vertex-html id="vertex-5"></vertex-html>
-      <vertex-html id="vertex-6"></vertex-html>
-      <vertex-html id="vertex-7"></vertex-html>
-      <vertex-html id="vertex-8"></vertex-html>
-      <vertex-html id="vertex-9"></vertex-html>
-
-      <edge-html id="edge-0" sourceId="vertex-0" targetId="vertex-1"></edge-html>
-      <edge-html id="edge-1" sourceId="vertex-1" targetId="vertex-2"></edge-html>
-      <edge-html id="edge-2" sourceId="vertex-2" targetId="vertex-0"></edge-html>
-      <edge-html id="edge-3" sourceId="vertex-3" targetId="vertex-0"></edge-html>
-      <edge-html id="edge-4" sourceId="vertex-3" targetId="vertex-1"></edge-html>
-      <edge-html id="edge-5" sourceId="vertex-3" targetId="vertex-2"></edge-html>
-
-      <edge-html id="edge-6" sourceId="vertex-4" targetId="vertex-5"></edge-html>
-      <edge-html id="edge-8" sourceId="vertex-4" targetId="vertex-7"></edge-html>
-      <edge-html id="edge-9" sourceId="vertex-5" targetId="vertex-7"></edge-html>
-      <edge-html id="edge-10" sourceId="vertex-1" targetId="vertex-4"></edge-html>
-      <edge-html id="edge-11" sourceId="vertex-1" targetId="vertex-5"></edge-html>
-      <edge-html id="edge-12" sourceId="vertex-1" targetId="vertex-7"></edge-html>
       
-      <edge-html id="edge-13" sourceId="vertex-5" targetId="vertex-6"></edge-html>
-      <edge-html id="edge-14" sourceId="vertex-5" targetId="vertex-8"></edge-html>
-      <edge-html id="edge-15" sourceId="vertex-8" targetId="vertex-6"></edge-html>
-      <edge-html id="edge-16" sourceId="vertex-2" targetId="vertex-5"></edge-html>
-      <edge-html id="edge-17" sourceId="vertex-2" targetId="vertex-6"></edge-html>
-      <edge-html id="edge-18" sourceId="vertex-2" targetId="vertex-8"></edge-html>
-
-      <edge-html id="edge-19" sourceId="vertex-7" targetId="vertex-8"></edge-html>
-      <edge-html id="edge-20" sourceId="vertex-7" targetId="vertex-9"></edge-html>
-      <edge-html id="edge-21" sourceId="vertex-8" targetId="vertex-9"></edge-html>
-      <edge-html id="edge-22" sourceId="vertex-3" targetId="vertex-7"></edge-html>
-      <edge-html id="edge-23" sourceId="vertex-3" targetId="vertex-8"></edge-html>
-      <edge-html id="edge-24" sourceId="vertex-3" targetId="vertex-9"></edge-html>
-
+      <vertex-html id="vertex-0-0-0"></vertex-html> 
+      <vertex-html id="vertex-0-0-1"></vertex-html> 
+      <vertex-html id="vertex-0-0-2"></vertex-html> 
+      <vertex-html id="vertex-0-1-0"></vertex-html> 
+      <vertex-html id="vertex-0-1-1"></vertex-html> 
+      <vertex-html id="vertex-0-1-2"></vertex-html> 
+      <vertex-html id="vertex-0-2-0"></vertex-html> 
+      <vertex-html id="vertex-0-2-1"></vertex-html> 
+      <vertex-html id="vertex-0-2-2"></vertex-html> 
+      <vertex-html id="vertex-1-0-0"></vertex-html> 
+      <vertex-html id="vertex-1-0-1"></vertex-html> 
+      <vertex-html id="vertex-1-0-2"></vertex-html> 
+      <vertex-html id="vertex-1-1-0"></vertex-html> 
+      <vertex-html id="vertex-1-1-1"></vertex-html> 
+      <vertex-html id="vertex-1-1-2"></vertex-html> 
+      <vertex-html id="vertex-1-2-0"></vertex-html> 
+      <vertex-html id="vertex-1-2-1"></vertex-html> 
+      <vertex-html id="vertex-1-2-2"></vertex-html> 
+      <vertex-html id="vertex-2-0-0"></vertex-html> 
+      <vertex-html id="vertex-2-0-1"></vertex-html> 
+      <vertex-html id="vertex-2-0-2"></vertex-html> 
+      <vertex-html id="vertex-2-1-0"></vertex-html> 
+      <vertex-html id="vertex-2-1-1"></vertex-html> 
+      <vertex-html id="vertex-2-1-2"></vertex-html> 
+      <vertex-html id="vertex-2-2-0"></vertex-html> 
+      <vertex-html id="vertex-2-2-1"></vertex-html> 
+      <vertex-html id="vertex-2-2-2"></vertex-html> 
+      <edge-html sourceId="vertex-0-0-0" targetId="vertex-1-0-0"></edge-html> 
+      <edge-html sourceId="vertex-0-0-0" targetId="vertex-0-1-0"></edge-html> 
+      <edge-html sourceId="vertex-0-0-0" targetId="vertex-0-0-1"></edge-html> 
+      <edge-html sourceId="vertex-0-0-1" targetId="vertex-1-0-1"></edge-html> 
+      <edge-html sourceId="vertex-0-0-1" targetId="vertex-0-1-1"></edge-html> 
+      <edge-html sourceId="vertex-0-0-1" targetId="vertex-0-0-2"></edge-html> 
+      <edge-html sourceId="vertex-0-0-2" targetId="vertex-1-0-2"></edge-html> 
+      <edge-html sourceId="vertex-0-0-2" targetId="vertex-0-1-2"></edge-html> 
+      <edge-html sourceId="vertex-0-0-2" targetId="vertex-0-0-3"></edge-html> 
+      <edge-html sourceId="vertex-0-1-0" targetId="vertex-1-1-0"></edge-html> 
+      <edge-html sourceId="vertex-0-1-0" targetId="vertex-0-2-0"></edge-html> 
+      <edge-html sourceId="vertex-0-1-0" targetId="vertex-0-1-1"></edge-html> 
+      <edge-html sourceId="vertex-0-1-1" targetId="vertex-1-1-1"></edge-html> 
+      <edge-html sourceId="vertex-0-1-1" targetId="vertex-0-2-1"></edge-html> 
+      <edge-html sourceId="vertex-0-1-1" targetId="vertex-0-1-2"></edge-html> 
+      <edge-html sourceId="vertex-0-1-2" targetId="vertex-1-1-2"></edge-html> 
+      <edge-html sourceId="vertex-0-1-2" targetId="vertex-0-2-2"></edge-html> 
+      <edge-html sourceId="vertex-0-1-2" targetId="vertex-0-1-3"></edge-html> 
+      <edge-html sourceId="vertex-0-2-0" targetId="vertex-1-2-0"></edge-html> 
+      <edge-html sourceId="vertex-0-2-0" targetId="vertex-0-3-0"></edge-html> 
+      <edge-html sourceId="vertex-0-2-0" targetId="vertex-0-2-1"></edge-html> 
+      <edge-html sourceId="vertex-0-2-1" targetId="vertex-1-2-1"></edge-html> 
+      <edge-html sourceId="vertex-0-2-1" targetId="vertex-0-3-1"></edge-html> 
+      <edge-html sourceId="vertex-0-2-1" targetId="vertex-0-2-2"></edge-html> 
+      <edge-html sourceId="vertex-0-2-2" targetId="vertex-1-2-2"></edge-html> 
+      <edge-html sourceId="vertex-0-2-2" targetId="vertex-0-3-2"></edge-html> 
+      <edge-html sourceId="vertex-0-2-2" targetId="vertex-0-2-3"></edge-html> 
+      <edge-html sourceId="vertex-1-0-0" targetId="vertex-2-0-0"></edge-html> 
+      <edge-html sourceId="vertex-1-0-0" targetId="vertex-1-1-0"></edge-html> 
+      <edge-html sourceId="vertex-1-0-0" targetId="vertex-1-0-1"></edge-html> 
+      <edge-html sourceId="vertex-1-0-1" targetId="vertex-2-0-1"></edge-html> 
+      <edge-html sourceId="vertex-1-0-1" targetId="vertex-1-1-1"></edge-html> 
+      <edge-html sourceId="vertex-1-0-1" targetId="vertex-1-0-2"></edge-html> 
+      <edge-html sourceId="vertex-1-0-2" targetId="vertex-2-0-2"></edge-html> 
+      <edge-html sourceId="vertex-1-0-2" targetId="vertex-1-1-2"></edge-html> 
+      <edge-html sourceId="vertex-1-0-2" targetId="vertex-1-0-3"></edge-html> 
+      <edge-html sourceId="vertex-1-1-0" targetId="vertex-2-1-0"></edge-html> 
+      <edge-html sourceId="vertex-1-1-0" targetId="vertex-1-2-0"></edge-html> 
+      <edge-html sourceId="vertex-1-1-0" targetId="vertex-1-1-1"></edge-html> 
+      <edge-html sourceId="vertex-1-1-1" targetId="vertex-2-1-1"></edge-html> 
+      <edge-html sourceId="vertex-1-1-1" targetId="vertex-1-2-1"></edge-html> 
+      <edge-html sourceId="vertex-1-1-1" targetId="vertex-1-1-2"></edge-html> 
+      <edge-html sourceId="vertex-1-1-2" targetId="vertex-2-1-2"></edge-html> 
+      <edge-html sourceId="vertex-1-1-2" targetId="vertex-1-2-2"></edge-html> 
+      <edge-html sourceId="vertex-1-1-2" targetId="vertex-1-1-3"></edge-html> 
+      <edge-html sourceId="vertex-1-2-0" targetId="vertex-2-2-0"></edge-html> 
+      <edge-html sourceId="vertex-1-2-0" targetId="vertex-1-3-0"></edge-html> 
+      <edge-html sourceId="vertex-1-2-0" targetId="vertex-1-2-1"></edge-html> 
+      <edge-html sourceId="vertex-1-2-1" targetId="vertex-2-2-1"></edge-html> 
+      <edge-html sourceId="vertex-1-2-1" targetId="vertex-1-3-1"></edge-html> 
+      <edge-html sourceId="vertex-1-2-1" targetId="vertex-1-2-2"></edge-html> 
+      <edge-html sourceId="vertex-1-2-2" targetId="vertex-2-2-2"></edge-html> 
+      <edge-html sourceId="vertex-1-2-2" targetId="vertex-1-3-2"></edge-html> 
+      <edge-html sourceId="vertex-1-2-2" targetId="vertex-1-2-3"></edge-html> 
+      <edge-html sourceId="vertex-2-0-0" targetId="vertex-3-0-0"></edge-html> 
+      <edge-html sourceId="vertex-2-0-0" targetId="vertex-2-1-0"></edge-html> 
+      <edge-html sourceId="vertex-2-0-0" targetId="vertex-2-0-1"></edge-html> 
+      <edge-html sourceId="vertex-2-0-1" targetId="vertex-3-0-1"></edge-html> 
+      <edge-html sourceId="vertex-2-0-1" targetId="vertex-2-1-1"></edge-html> 
+      <edge-html sourceId="vertex-2-0-1" targetId="vertex-2-0-2"></edge-html> 
+      <edge-html sourceId="vertex-2-0-2" targetId="vertex-3-0-2"></edge-html> 
+      <edge-html sourceId="vertex-2-0-2" targetId="vertex-2-1-2"></edge-html> 
+      <edge-html sourceId="vertex-2-0-2" targetId="vertex-2-0-3"></edge-html> 
+      <edge-html sourceId="vertex-2-1-0" targetId="vertex-3-1-0"></edge-html> 
+      <edge-html sourceId="vertex-2-1-0" targetId="vertex-2-2-0"></edge-html> 
+      <edge-html sourceId="vertex-2-1-0" targetId="vertex-2-1-1"></edge-html> 
+      <edge-html sourceId="vertex-2-1-1" targetId="vertex-3-1-1"></edge-html> 
+      <edge-html sourceId="vertex-2-1-1" targetId="vertex-2-2-1"></edge-html> 
+      <edge-html sourceId="vertex-2-1-1" targetId="vertex-2-1-2"></edge-html> 
+      <edge-html sourceId="vertex-2-1-2" targetId="vertex-3-1-2"></edge-html> 
+      <edge-html sourceId="vertex-2-1-2" targetId="vertex-2-2-2"></edge-html> 
+      <edge-html sourceId="vertex-2-1-2" targetId="vertex-2-1-3"></edge-html> 
+      <edge-html sourceId="vertex-2-2-0" targetId="vertex-3-2-0"></edge-html> 
+      <edge-html sourceId="vertex-2-2-0" targetId="vertex-2-3-0"></edge-html> 
+      <edge-html sourceId="vertex-2-2-0" targetId="vertex-2-2-1"></edge-html> 
+      <edge-html sourceId="vertex-2-2-1" targetId="vertex-3-2-1"></edge-html> 
+      <edge-html sourceId="vertex-2-2-1" targetId="vertex-2-3-1"></edge-html> 
+      <edge-html sourceId="vertex-2-2-1" targetId="vertex-2-2-2"></edge-html> 
+      <edge-html sourceId="vertex-2-2-2" targetId="vertex-3-2-2"></edge-html> 
+      <edge-html sourceId="vertex-2-2-2" targetId="vertex-2-3-2"></edge-html> 
+      <edge-html sourceId="vertex-2-2-2" targetId="vertex-2-2-3"></edge-html> 
     </graph-html>
   </body>
 </html>
