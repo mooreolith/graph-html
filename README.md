@@ -1,7 +1,7 @@
 # graph-html
 ## (not done yet)
 
-[This](https://mooreolith.github.io/graph-html) is (going to be) a web component encapsulating a [dynamic force directed graph visualization](https://arxiv.org/abs/0712.1549). 
+[This](https://mooreolith.github.io/graph-html) is (going to be) a web component encapsulating a [dynamic multilevel graph visualization](https://arxiv.org/abs/0712.1549). 
 I got the VertexHTML, EdgeHTML and GraphHTML displaying on a THREE.js controlled canvas, with the help of a BarnesHutOctree. 
 The dynamic matching is not yet implemented. I left a lot of the writing to GithubCopilot, it's like a Junior Engineer you have to mentor. 
 I intend to let GH Copilot rewrite the layout calculations in C++, to be compiled to WebAssembly.
