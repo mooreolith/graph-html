@@ -1,5 +1,5 @@
 import * as three from 'three'
-import { Constants } from '/src/constants.mjs';
+import { Constants } from '/graph-html/src-copy/constants.mjs';
 
 class Octree {
   constructor(){

@@ -1,4 +1,4 @@
-import { LayoutGraph } from './layout.mjs'
+import { LayoutGraph } from '/graph-html/src-copy/layout.mjs'
 import * as three from 'three'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
