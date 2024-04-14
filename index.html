@@ -3,42 +3,8 @@
   <head>
     <meta charset="utf-8">
     <title>graph-html</title>
-    <style>
-      html, body {
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-      }
-
-      vertex-html {
-        --vertex-width: 50;
-        --vertex-height: 50;
-        --vertex-color: red;
-        --vertex-display: none;
-      }
-
-      edge-html {
-        --edge-width: 2;
-        --edge-color: green;
-        --edge-display: none;
-        --edge-width: 2
-      }
-
-      graph-html {
-        width: 100vw;
-        height: 100vh;
-        display: block;
-      }
-    </style>
-    <script type="importmap"> 
-      { 
-        "imports": { 
-          "three": "https://cdn.jsdelivr.net/npm/three@0.163.0/build/three.module.js", 
-          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.163.0/examples/jsm/"
-        } 
-      } 
-    </script>
-    <script type="module" src="./src-copy/graph-html.mjs"></script>
+    <link rel="stylesheet" href="index.css">
+    <script type="module" src="./src/graph-html.mjs"></script>
     <script type="text/javascript" src="./index.js"></script>
   </head>
   <body>

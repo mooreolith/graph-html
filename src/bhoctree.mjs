@@ -1,5 +1,5 @@
-import * as three from 'three'
-import { Constants } from '/src/constants.mjs';
+import * as three from '../lib/three.module.mjs';
+import { Constants } from './constants.mjs';
 
 class Octree {
   constructor(){

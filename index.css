@@ -1,0 +1,25 @@
+html, body {
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
+vertex-html {
+	--vertex-width: 50;
+	--vertex-height: 50;
+	--vertex-color: red;
+	--vertex-display: none;
+}
+
+edge-html {
+	--edge-width: 2;
+	--edge-color: green;
+	--edge-display: none;
+	--edge-width: 2
+}
+
+graph-html {
+	width: 100vw;
+	height: 100vh;
+	display: block;
+}
