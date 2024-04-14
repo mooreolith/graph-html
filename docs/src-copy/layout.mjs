@@ -1,8 +1,8 @@
 import { Util } from '/graph-html/src-copy/util.mjs'
 import * as three from 'three'
 import { Constants } from '/graph-html/src-copy/constants.mjs'
-window.Constants = Constants
 import { Octree } from '/graph-html/src-copy/bhoctree.mjs'
+window.Constants = Constants
 
 class LayoutVertex extends EventTarget {
   constructor(id, options, graph) {
