@@ -1,70 +1,34 @@
-function generateCube(n) {
+function generateCube(n, begin=0) {
   var graphHtml = document.getElementById('graph');
 
-  function createEdge(sourceId, targetId) {
-    var edge = document.createElement('edge-html');
-    edge.setAttribute('sourceId', sourceId);
-    edge.setAttribute('targetId', targetId);
-    graphHtml.appendChild(edge)
-  }
-
-  let vertices = [];
-  let edges = [];
-
   // Generate vertices
-  for (let x = 0; x < n; x++) {
-    for (let y = 0; y < n; y++) {
-      for (let z = 0; z < n; z++) {
-        let vertex = document.createElement('vertex-html');
-        vertex.id = `vertex-${x}-${y}-${z}`;
-        graphHtml.appendChild(vertex);
+  let count = 0;
+  for (let x = 0 + begin; x < n + begin; x++) {
+    for (let y = 0 + begin; y < n + begin; y++) {
+      for (let z = 0 + begin; z < n + begin; z++) {
+        graphHtml.createVertex({id: `vertex-${x}-${y}-${z}`});
       }
     }
   }
 
   // Generate edges
-  for (let x = 0; x < n; x++) {
-    for (let y = 0; y < n; y++) {
-      for (let z = 0; z < n; z++) {
-        if (x < n - 1) {
-          createEdge(`vertex-${x}-${y}-${z}`, `vertex-${x+1}-${y}-${z}`);
+  for (let x = 0 + begin; x < n + begin; x++) {
+    for (let y = 0 + begin; y < n + begin; y++) {
+      for (let z = 0 + begin; z < n + begin; z++) {
+        if (x < n + begin - 1) {
+          graphHtml.createEdge(`vertex-${x}-${y}-${z}`, `vertex-${x+1}-${y}-${z}`);
         }
-        if (y < n - 1) {
-          createEdge(`vertex-${x}-${y}-${z}`, `vertex-${x}-${y+1}-${z}`);
+        if (y < n + begin - 1) {
+          graphHtml.createEdge(`vertex-${x}-${y}-${z}`, `vertex-${x}-${y+1}-${z}`);
         }
-        if (z < n - 1) {
-          createEdge(`vertex-${x}-${y}-${z}`, `vertex-${x}-${y}-${z+1}`);
+        if (z < n + begin - 1) {
+          graphHtml.createEdge(`vertex-${x}-${y}-${z}`, `vertex-${x}-${y}-${z+1}`);
         }
       }
     }
   }
 
-  return { vertices, edges };
-}
+  const current = begin + count;
 
-function writeCubeCode(n){
-  for (let x = 0; x < n; x++) {
-    for (let y = 0; y < n; y++) {
-      for (let z = 0; z < n; z++) {
-        console.log(`<vertex-html id="vertex-${x}-${y}-${z}"></vertex-html>`);
-      }
-    }
-  }
-
-  // Generate edges
-  for (let x = 0; x < n; x++) {
-    for (let y = 0; y < n; y++) {
-      for (let z = 0; z < n; z++) {
-        if (x <= n - 1) {
-          console.log(`<edge-html sourceId="vertex-${x}-${y}-${z}" targetId="vertex-${x+1}-${y}-${z}"></edge-html>`);
-        }
-        if (y <= n - 1) {
-          console.log(`<edge-html sourceId="vertex-${x}-${y}-${z}" targetId="vertex-${x}-${y+1}-${z}"></edge-html>`);
-        }
-        if (z <= n - 1) {
-          console.log(`<edge-html sourceId="vertex-${x}-${y}-${z}" targetId="vertex-${x}-${y}-${z+1}"></edge-html>`);
-        }
-      }
-    }
-  }
+  return current;
 }

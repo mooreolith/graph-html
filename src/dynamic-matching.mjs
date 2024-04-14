@@ -66,7 +66,7 @@ class DynamicMatching {
     vertex.edges.forEach(edge => this.deleteEdge(edge))
   }
 
-  addvertex(vertex){
+  addVertex(vertex){
     this.vertices.set(vertex.id, vertex);
   }
 

@@ -3,7 +3,6 @@ import * as three from 'three'
 import { Constants } from '/src/constants.mjs'
 window.Constants = Constants
 import { Octree } from '/src/bhoctree.mjs'
-import { DynamicMatching } from '/src/dynamic-matching.mjs'
 
 class LayoutVertex extends EventTarget {
   constructor(id, options, graph) {
@@ -79,6 +78,7 @@ class LayoutGraph extends EventTarget {
 
   vertices = new Map()
   edges = new Map()
+  octree = new Octree()
 
   constructor(htmlGraph) {
     super()
@@ -104,6 +104,7 @@ class LayoutGraph extends EventTarget {
     const vertex = new LayoutVertex(id, options, this)
     vertex.id = id
 
+    this.octree.insert(vertex)
     this.vertices.set(id, vertex)
     return id
   }
@@ -142,6 +143,7 @@ class LayoutGraph extends EventTarget {
       }
     }
 
+    this.octree.remove(this.vertices.get(id))
     this.vertices.delete(id)
   }
 

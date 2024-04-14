@@ -4,7 +4,7 @@
 
 class Constants {
   // spring constant; more K, more attraction
-  static K = .2
+  static K = 2.0
 
   // repulsion constant; more f0, more repulsion
   static f0 = 100.0

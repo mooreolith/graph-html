@@ -27,6 +27,7 @@ class Octree {
 
   insert(vertex){
     this.count++;
+    this.centerSum.add(vertex.position);
 
     if(this.inners.size == 0){
       this.placeInner(vertex);
@@ -37,6 +38,23 @@ class Octree {
         this.placeInner(vertex);
       }else{
         this.placeOuter(vertex);
+      }
+    }
+  }
+
+  remove(vertex){
+    if(this.inners.has(vertex)){
+      this.inners.delete(vertex);
+      this.count--;
+    }else{
+      for(let [key, octree] of this.outers){
+        if(octree.contains(vertex)){
+          octree.remove(vertex);
+          if(octree.size() == 0){
+            this.outers.delete(key);
+          }
+          break;
+        }
       }
     }
   }
