@@ -5,7 +5,11 @@ class Octree {
   constructor(){
     this.inners = new Set();
     this.outers = new Map();
-    this.centerSum = new three.Vector3();
+    this.centerSum = new three.Vector3(
+      Math.random() * 10,
+      Math.random() * 10,
+      Math.random() * 10
+    );
     this.count = 0;
   }
 
@@ -16,9 +20,22 @@ class Octree {
 
     this.centerSum = Array.from(this.inners).reduce((prev, cur) => {
       return prev.add(cur.position);
-    }, new three.Vector3());
+    }, new three.Vector3()) || new three.Vector3(
+      Math.random() * 10,
+      Math.random() * 10,
+      Math.random() * 10
+    )
 
-    return this.centerSum.divideScalar(this.count-1);
+    const centerSum = this.centerSum.divideScalar(this.count);
+    if(centerSum.length === 0.0){
+      return new three.Vector3(
+        Math.random() * 10,
+        Math.random() * 10,
+        Math.random() * 10
+      );
+    }else{
+      return centerSum
+    }
   }
 
   get position(){
