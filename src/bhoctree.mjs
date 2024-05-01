@@ -14,22 +14,17 @@ class Octree {
   }
 
   center(){
-    if(this.count == 0){
-      return new three.Vector3();
-    }
-
     let centerSum = Array.from(this.inners).reduce((prev, cur) => {
       return prev.add(cur.position);
-    }, new three.Vector3()) || new three.Vector3(
+    }, new three.Vector3(
       Math.random() * 10,
       Math.random() * 10,
       Math.random() * 10
-    )
+    ));
 
-    centerSum = centerSum.divideScalar(this.count + 1);
-    this.centerSum.set(centerSum);
+    let count = this.inners.size;
 
-    return centerSum;
+    return centerSum.divideScalar(count);
   }
 
   get position(){
@@ -61,7 +56,7 @@ class Octree {
       for(let [key, octree] of this.outers){
         if(octree.contains(vertex)){
           octree.remove(vertex);
-          if(octree.size() == 0){
+          if(octree.size === 0){
             this.outers.delete(key);
           }
           break;
@@ -88,7 +83,7 @@ class Octree {
       var dist = c.clone().sub(octree.center());
       var d = dist.length();
 
-      if(d < Constants.theta * this.size()){
+      if(d < Constants.theta * this.size){
         f.add(octree.estimate(v, forceFn));
       }else{
         var force = forceFn(v, octree);
@@ -99,8 +94,8 @@ class Octree {
     return f;
   }
 
-  size(){
-    return this.count;
+  get size(){
+    return this.count > 0 ? this.count : 1;
   }
 
   getOctant(pos){
