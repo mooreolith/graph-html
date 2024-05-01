@@ -18,7 +18,7 @@ class Octree {
       return new three.Vector3();
     }
 
-    this.centerSum = Array.from(this.inners).reduce((prev, cur) => {
+    let centerSum = Array.from(this.inners).reduce((prev, cur) => {
       return prev.add(cur.position);
     }, new three.Vector3()) || new three.Vector3(
       Math.random() * 10,
@@ -26,16 +26,10 @@ class Octree {
       Math.random() * 10
     )
 
-    const centerSum = this.centerSum.divideScalar(this.count);
-    if(centerSum.length === 0.0){
-      return new three.Vector3(
-        Math.random() * 10,
-        Math.random() * 10,
-        Math.random() * 10
-      );
-    }else{
-      return centerSum
-    }
+    centerSum = centerSum.divideScalar(this.count + 1);
+    this.centerSum = centerSum;
+
+    return centerSum;
   }
 
   get position(){
