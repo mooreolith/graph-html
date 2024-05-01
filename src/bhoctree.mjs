@@ -27,7 +27,7 @@ class Octree {
     )
 
     centerSum = centerSum.divideScalar(this.count + 1);
-    this.centerSum = centerSum;
+    this.centerSum.set(centerSum);
 
     return centerSum;
   }
