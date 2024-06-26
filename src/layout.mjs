@@ -174,6 +174,9 @@ class LayoutGraph extends EventTarget {
     this.html.updateEdges()
   }
 
+  /*
+    Unused, see estimateRepulsionForces below
+  */
   calculateRepulsionForces() {
     const vertices = Array.from(this.vertices.values())
 
@@ -191,6 +194,10 @@ class LayoutGraph extends EventTarget {
     }
   }
 
+  /*
+    Calculates the attraction forces between all connected vertices,  
+    and adds/subtracts the resulting force to the vertices' accelerations.
+  */
   calculateAttractionForces(){
     for(const edge of this.edges.values()){
       const difference = new three.Vector3().subVectors(edge.source.position, edge.target.position)
@@ -202,6 +209,10 @@ class LayoutGraph extends EventTarget {
     }
   }
 
+  /*
+    Calculates the repulsion forces between all (grouped) pairs of vertices,
+    and adds the resulting force to the vertices' accelerations.
+  */
   estimateRepulsionForces(){
     const octree = new Octree()
     const vertices = Array.from(this.vertices.values())
